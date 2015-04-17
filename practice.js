@@ -9,11 +9,11 @@ var outer = function(){
 //Above you're given a function that returns another function which has a closure over the name variable.
 //Invoke outer saving the return value into another variable called 'inner'.
 
-  //Code Here
+  var inner = outer()
 
 //Once you do that, invoke inner.
 
-  //Code Here
+  inner()
 
 
 
@@ -32,7 +32,8 @@ var callFriend = function(){
 //Above you're given a callFriend function that returns another function.
 //Do what you need to do in order to call your function and get 'Calling Jake at 435-215-9248' in your console.
 
-  //Code Here
+  insideFn = callFriend()
+  insideFn('435-215-9248')
 
 
 
@@ -44,7 +45,14 @@ var callFriend = function(){
   Write a function called makeCounter that makes the following code work properly.
 */
 
-  //Code Here
+  var makeCounter = function(){
+    var number = 1;
+    return function(){
+      console.log(number)
+      number++
+    }
+  }
+
   var count = makeCounter();
   count() // 1
   count() // 2
@@ -66,4 +74,18 @@ var callFriend = function(){
 
 
 
+var fn = function(cb, n) {
+  var count = 0
+  return function() {
+    if(count < n) {
+      cb()
+      count++
+    } else {
+      console.log('STAHHP')
+    }
+  }
+}
 
+var newFn = fn(function() {
+  console.log('ran once')
+}, 5)
